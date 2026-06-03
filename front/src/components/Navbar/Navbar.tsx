@@ -1,19 +1,240 @@
+import { useState, useEffect } from 'react';
+import { useTheme } from '../../context/ThemeContext';
+
+const navLinks = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+
 const Navbar = () => {
-    return (
-        <nav className='bg-white'>
+  const { theme, toggleTheme } = useTheme();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-            <div className='flex items-center justify-center '>
-                <ul className='hidden gap-6 md:flex '>
-                  
-                    <li> <a href="/" className="bg-blue-400 rounded ">Home</a> </li>
-                    <li><a href="project">Projects</a> </li>
-                    <li><a href="resume">Resume</a> </li>
-                    <li><a href="contact">Contact</a> </li>
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-                </ul>
-            </div>
-        </nav>
-    )
-}
+  // Close mobile menu on resize
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 768) setMobileOpen(false);
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
-export default Navbar
+  const handleNavClick = () => {
+    setMobileOpen(false);
+  };
+
+  return (
+    <nav
+      id="main-nav"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        padding: scrolled ? '12px 0' : '20px 0',
+        background: scrolled ? 'var(--bg-glass)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+        borderBottom: scrolled ? '1px solid var(--bg-glass-border)' : '1px solid transparent',
+        transition: 'all var(--transition-base)',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '0 24px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        {/* Logo */}
+        <a
+          href="#home"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: '1.5rem',
+            fontWeight: 800,
+            letterSpacing: '-0.03em',
+            background: 'linear-gradient(135deg, var(--accent), var(--gold))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            transition: 'opacity var(--transition-fast)',
+          }}
+        >
+          AS.
+        </a>
+
+        {/* Desktop Nav Links */}
+        <ul
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+          }}
+          className="nav-desktop"
+        >
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                style={{
+                  padding: '8px 18px',
+                  fontSize: '0.88rem',
+                  fontWeight: 500,
+                  color: 'var(--text-secondary)',
+                  borderRadius: 'var(--radius-full)',
+                  transition: 'all var(--transition-fast)',
+                  display: 'block',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--accent)';
+                  e.currentTarget.style.background = 'var(--accent-light)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--text-secondary)';
+                  e.currentTarget.style.background = 'transparent';
+                }}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Right: Theme toggle + Mobile menu */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {/* Theme Toggle */}
+          <button
+            id="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            style={{
+              width: 42,
+              height: 42,
+              borderRadius: 'var(--radius-full)',
+              border: '1px solid var(--border)',
+              background: 'var(--bg-surface)',
+              color: 'var(--text-primary)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.15rem',
+              transition: 'all var(--transition-base)',
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'var(--accent)';
+              e.currentTarget.style.color = 'var(--accent)';
+              e.currentTarget.style.transform = 'rotate(30deg)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'var(--border)';
+              e.currentTarget.style.color = 'var(--text-primary)';
+              e.currentTarget.style.transform = 'rotate(0deg)';
+            }}
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+
+          {/* Mobile Hamburger */}
+          <button
+            id="mobile-menu-toggle"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle mobile menu"
+            className="nav-mobile-btn"
+            style={{
+              width: 42,
+              height: 42,
+              borderRadius: 'var(--radius-full)',
+              border: '1px solid var(--border)',
+              background: 'var(--bg-surface)',
+              color: 'var(--text-primary)',
+              cursor: 'pointer',
+              display: 'none',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.2rem',
+              transition: 'all var(--transition-base)',
+              flexShrink: 0,
+            }}
+          >
+            {mobileOpen ? '✕' : '☰'}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div
+          className="nav-mobile-menu"
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            background: 'var(--bg-glass)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderBottom: '1px solid var(--bg-glass-border)',
+            padding: '16px 24px',
+            animation: 'fadeInUp 0.3s ease-out',
+          }}
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={handleNavClick}
+              style={{
+                display: 'block',
+                padding: '14px 18px',
+                fontSize: '1rem',
+                fontWeight: 500,
+                color: 'var(--text-secondary)',
+                borderRadius: 'var(--radius-md)',
+                transition: 'all var(--transition-fast)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = 'var(--accent)';
+                e.currentTarget.style.background = 'var(--accent-light)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'var(--text-secondary)';
+                e.currentTarget.style.background = 'transparent';
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+
+      {/* Responsive styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          .nav-desktop { display: none !important; }
+          .nav-mobile-btn { display: flex !important; }
+        }
+      `}</style>
+    </nav>
+  );
+};
+
+export default Navbar;
