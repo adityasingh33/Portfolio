@@ -12,6 +12,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -26,6 +27,27 @@ const Navbar = () => {
     };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Scroll spy — track which section is in view
+  useEffect(() => {
+    const sectionIds = navLinks.map((l) => l.href.replace('#', ''));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   const handleNavClick = () => {
@@ -89,32 +111,36 @@ const Navbar = () => {
           }}
           className="nav-desktop"
         >
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                style={{
-                  padding: '8px 18px',
-                  fontSize: '0.88rem',
-                  fontWeight: 500,
-                  color: 'var(--text-secondary)',
-                  borderRadius: 'var(--radius-full)',
-                  transition: 'all var(--transition-fast)',
-                  display: 'block',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--accent)';
-                  e.currentTarget.style.background = 'var(--accent-light)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--text-secondary)';
-                  e.currentTarget.style.background = 'transparent';
-                }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.replace('#', '');
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  style={{
+                    padding: '8px 18px',
+                    fontSize: '0.88rem',
+                    fontWeight: isActive ? 600 : 500,
+                    color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
+                    background: isActive ? 'var(--accent-light)' : 'transparent',
+                    borderRadius: 'var(--radius-full)',
+                    transition: 'all var(--transition-fast)',
+                    display: 'block',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = 'var(--accent)';
+                    e.currentTarget.style.background = 'var(--accent-light)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = isActive ? 'var(--accent)' : 'var(--text-secondary)';
+                    e.currentTarget.style.background = isActive ? 'var(--accent-light)' : 'transparent';
+                  }}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Right: Theme toggle + Mobile menu */}
@@ -197,32 +223,36 @@ const Navbar = () => {
             animation: 'fadeInUp 0.3s ease-out',
           }}
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={handleNavClick}
-              style={{
-                display: 'block',
-                padding: '14px 18px',
-                fontSize: '1rem',
-                fontWeight: 500,
-                color: 'var(--text-secondary)',
-                borderRadius: 'var(--radius-md)',
-                transition: 'all var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--accent)';
-                e.currentTarget.style.background = 'var(--accent-light)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--text-secondary)';
-                e.currentTarget.style.background = 'transparent';
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.replace('#', '');
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={handleNavClick}
+                style={{
+                  display: 'block',
+                  padding: '14px 18px',
+                  fontSize: '1rem',
+                  fontWeight: isActive ? 600 : 500,
+                  color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
+                  background: isActive ? 'var(--accent-light)' : 'transparent',
+                  borderRadius: 'var(--radius-md)',
+                  transition: 'all var(--transition-fast)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--accent)';
+                  e.currentTarget.style.background = 'var(--accent-light)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = isActive ? 'var(--accent)' : 'var(--text-secondary)';
+                  e.currentTarget.style.background = isActive ? 'var(--accent-light)' : 'transparent';
+                }}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
       )}
 
