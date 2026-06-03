@@ -1,16 +1,42 @@
-const skills = [
-  { name: 'React', icon: '⚛️' },
-  { name: 'TypeScript', icon: '🔷' },
-  { name: 'JavaScript', icon: '🟨' },
-  { name: 'Node.js', icon: '🟢' },
-  { name: 'Python', icon: '🐍' },
-  { name: 'MongoDB', icon: '🍃' },
-  { name: 'PostgreSQL', icon: '🐘' },
-  { name: 'Git', icon: '🔀' },
-  { name: 'Docker', icon: '🐳' },
-  { name: 'Tailwind CSS', icon: '🎨' },
-  { name: 'Next.js', icon: '▲' },
-  { name: 'Express', icon: '🚀' },
+import {
+  Atom,
+  FileCode2,
+  Braces,
+  Server,
+  Code2,
+  Database,
+  Layers,
+  GitBranch,
+  Container,
+  Palette,
+  Hexagon,
+  Rocket,
+  GraduationCap,
+  Lightbulb,
+  Users,
+  Sparkles,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
+interface Skill {
+  name: string;
+  icon: LucideIcon;
+  color: string;
+}
+
+const skills: Skill[] = [
+  { name: 'React', icon: Atom, color: '#61dafb' },
+  { name: 'TypeScript', icon: FileCode2, color: '#3178c6' },
+  { name: 'JavaScript', icon: Braces, color: '#f7df1e' },
+  { name: 'Node.js', icon: Server, color: '#68a063' },
+  { name: 'Python', icon: Code2, color: '#3776ab' },
+  { name: 'MongoDB', icon: Database, color: '#4db33d' },
+  { name: 'PostgreSQL', icon: Layers, color: '#336791' },
+  { name: 'Git', icon: GitBranch, color: '#f05032' },
+  { name: 'Docker', icon: Container, color: '#2496ed' },
+  { name: 'Tailwind CSS', icon: Palette, color: '#38bdf8' },
+  { name: 'Solidity', icon: Hexagon, color: '#363636' },
+  { name: 'Express', icon: Rocket, color: '#e8743a' },
 ];
 
 const About = () => {
@@ -36,7 +62,7 @@ const About = () => {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
           <div className="section-label animate-fade-in-up">
-            <span>✦</span> About Me
+            <Sparkles size={14} /> About Me
           </div>
           <h2 className="section-title animate-fade-in-up delay-100">
             A Glimpse Into <span className="accent-gradient">Who I Am</span>
@@ -108,9 +134,9 @@ const About = () => {
                 }}
               >
                 {[
-                  { icon: '🎓', label: 'Student' },
-                  { icon: '💡', label: 'Innovator' },
-                  { icon: '🤝', label: 'Team Player' },
+                  { Icon: GraduationCap, label: 'Student' },
+                  { Icon: Lightbulb, label: 'Innovator' },
+                  { Icon: Users, label: 'Team Player' },
                 ].map((trait) => (
                   <div
                     key={trait.label}
@@ -123,7 +149,7 @@ const About = () => {
                       fontWeight: 500,
                     }}
                   >
-                    <span style={{ fontSize: '1.1rem' }}>{trait.icon}</span>
+                    <trait.Icon size={18} style={{ color: 'var(--accent)' }} />
                     {trait.label}
                   </div>
                 ))}
@@ -145,7 +171,7 @@ const About = () => {
                 gap: 8,
               }}
             >
-              <span style={{ color: 'var(--accent)' }}>◆</span> Tech Stack & Skills
+              <Sparkles size={16} style={{ color: 'var(--accent)' }} /> Tech Stack & Skills
             </h3>
 
             <div
@@ -156,39 +182,42 @@ const About = () => {
               }}
               className="skills-grid"
             >
-              {skills.map((skill, i) => (
-                <div
-                  key={skill.name}
-                  className={`animate-fade-in-up delay-${Math.min((i + 3) * 100, 800)}`}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 10,
-                    padding: '14px 16px',
-                    background: 'var(--bg-surface)',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: 'var(--radius-md)',
-                    fontSize: '0.85rem',
-                    fontWeight: 500,
-                    color: 'var(--text-primary)',
-                    cursor: 'default',
-                    transition: 'all var(--transition-base)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent)';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <span style={{ fontSize: '1.15rem' }}>{skill.icon}</span>
-                  {skill.name}
-                </div>
-              ))}
+              {skills.map((skill, i) => {
+                const IconComp = skill.icon;
+                return (
+                  <div
+                    key={skill.name}
+                    className={`animate-fade-in-up delay-${Math.min((i + 3) * 100, 800)}`}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      padding: '14px 16px',
+                      background: 'var(--bg-surface)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: 'var(--radius-md)',
+                      fontSize: '0.85rem',
+                      fontWeight: 500,
+                      color: 'var(--text-primary)',
+                      cursor: 'default',
+                      transition: 'all var(--transition-base)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--accent)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--border-subtle)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  >
+                    <IconComp size={18} style={{ color: skill.color, flexShrink: 0 }} />
+                    {skill.name}
+                  </div>
+                );
+              })}
             </div>
 
             {/* Additional info */}
