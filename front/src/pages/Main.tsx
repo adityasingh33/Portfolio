@@ -1,28 +1,51 @@
-import Home from "./Home"
-import About from "./About"
-import Contact from "./Contact"
-import Project from "./Project"
+import Home from './Home';
+import About from './About';
+import Project from './Project';
+import Contact from './Contact';
 
 const Main = () => {
-    return (
-        <div>
-            <section id="home">
-                <Home />
-            </section>
+  return (
+    <div>
+      <Home />
 
-             <section id="project">
-                <Project />
-            </section>
+      {/* Subtle divider */}
+      <div
+        style={{
+          maxWidth: 120,
+          height: 2,
+          margin: '0 auto',
+          background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
+          borderRadius: 'var(--radius-full)',
+        }}
+      />
 
-            <section id="about">
-                <About />
-            </section>
+      <About />
 
-            <section id="contact">
-                <Contact />
-            </section>
-        </div>
-    )
-}
+      <div
+        style={{
+          maxWidth: 120,
+          height: 2,
+          margin: '0 auto',
+          background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
+          borderRadius: 'var(--radius-full)',
+        }}
+      />
 
-export default Main
+      <Project />
+
+      <div
+        style={{
+          maxWidth: 120,
+          height: 2,
+          margin: '0 auto',
+          background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
+          borderRadius: 'var(--radius-full)',
+        }}
+      />
+
+      <Contact />
+    </div>
+  );
+};
+
+export default Main;
