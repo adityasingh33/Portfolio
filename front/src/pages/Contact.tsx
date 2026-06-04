@@ -2,72 +2,43 @@ const EMAIL = 'adityasinghbharadwaj688@gmail.com';
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-padding" style={{ position: 'relative' }}>
+    <section id="contact" className="relative py-[100px] md:py-[60px]">
       {/* Background accents */}
       <div
+        className="pointer-events-none absolute bottom-[10%] left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full opacity-30 blur-[100px]"
         style={{
-          position: 'absolute',
-          bottom: '10%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: 500,
-          height: 500,
-          borderRadius: '50%',
           background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-          pointerEvents: 'none',
-          opacity: 0.3,
         }}
       />
 
-      <div
-        className="section-container"
-        style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}
-      >
+      <div className="relative z-1 mx-auto max-w-[1200px] px-6 text-center md:px-4">
         <div className="section-label animate-fade-in-up">
           <span>✉</span> Contact
         </div>
 
-        <h2
-          className="section-title animate-fade-in-up delay-100"
-          style={{ marginBottom: 20 }}
-        >
+        <h2 className="section-title animate-fade-in-up delay-100 mb-5">
           Let's <span className="accent-gradient">Connect</span>
         </h2>
 
-        <p
-          className="section-subtitle animate-fade-in-up delay-200"
-          style={{ margin: '0 auto 48px' }}
-        >
+        <p className="section-subtitle animate-fade-in-up delay-200 mx-auto mb-12">
           Have a project in mind, a question to ask, or just want to say hello?
           I'd love to hear from you. Drop me an email and let's make something great together.
         </p>
 
         {/* CTA Card */}
         <div
-          className="animate-fade-in-up delay-300"
+          className="animate-fade-in-up delay-300 mx-auto max-w-[580px] rounded-[var(--radius-xl)] px-10 py-12"
           style={{
-            maxWidth: 580,
-            margin: '0 auto',
-            padding: '48px 40px',
             background: 'var(--bg-surface)',
             border: '1px solid var(--border-subtle)',
-            borderRadius: 'var(--radius-xl)',
             boxShadow: 'var(--shadow-lg)',
           }}
         >
           {/* Email icon */}
           <div
+            className="mx-auto mb-6 flex size-16 items-center justify-center rounded-[var(--radius-lg)] text-[1.8rem]"
             style={{
-              width: 64,
-              height: 64,
-              margin: '0 auto 24px',
-              borderRadius: 'var(--radius-lg)',
               background: 'linear-gradient(135deg, var(--accent), var(--gold))',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.8rem',
               boxShadow: 'var(--shadow-accent)',
             }}
           >
@@ -75,27 +46,15 @@ const Contact = () => {
           </div>
 
           <h3
-            style={{
-              fontSize: '1.3rem',
-              fontWeight: 700,
-              fontFamily: "'Outfit', sans-serif",
-              color: 'var(--text-primary)',
-              marginBottom: 12,
-            }}
+            className="mb-3 font-display text-[1.3rem] font-bold"
+            style={{ color: 'var(--text-primary)' }}
           >
             Ready to Start a Conversation?
           </h3>
 
           <p
-            style={{
-              fontSize: '0.92rem',
-              color: 'var(--text-secondary)',
-              lineHeight: 1.7,
-              marginBottom: 32,
-              maxWidth: 420,
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}
+            className="mx-auto mb-8 max-w-[420px] text-[0.92rem] leading-[1.7]"
+            style={{ color: 'var(--text-secondary)' }}
           >
             Whether it's a collaboration, freelance work, or just a friendly chat —
             my inbox is always open.
@@ -104,9 +63,9 @@ const Contact = () => {
           {/* Main CTA Button */}
           <a
             href={`mailto:${EMAIL}`}
-            className="accent-btn"
+            className="accent-btn text-base"
             id="contact-email-btn"
-            style={{ fontSize: '1rem', padding: '16px 36px' }}
+            style={{ padding: '16px 36px' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -117,27 +76,15 @@ const Contact = () => {
 
           {/* Email address display */}
           <div
-            style={{
-              marginTop: 20,
-              fontSize: '0.82rem',
-              color: 'var(--text-tertiary)',
-              letterSpacing: '0.02em',
-            }}
+            className="mt-5 text-[0.82rem] tracking-[0.02em]"
+            style={{ color: 'var(--text-tertiary)' }}
           >
             {EMAIL}
           </div>
         </div>
 
         {/* Social links row */}
-        <div
-          className="animate-fade-in-up delay-500"
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 16,
-            marginTop: 48,
-          }}
-        >
+        <div className="animate-fade-in-up delay-500 mt-12 flex justify-center gap-4">
           {[
             {
               name: 'GitHub',
@@ -174,31 +121,11 @@ const Contact = () => {
               target={social.url.startsWith('mailto') ? undefined : '_blank'}
               rel={social.url.startsWith('mailto') ? undefined : 'noopener noreferrer'}
               aria-label={social.name}
+              className="social-link flex size-12 items-center justify-center rounded-full"
               style={{
-                width: 48,
-                height: 48,
-                borderRadius: 'var(--radius-full)',
                 border: '1px solid var(--border)',
                 background: 'var(--bg-surface)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 color: 'var(--text-secondary)',
-                transition: 'all var(--transition-base)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--accent)';
-                e.currentTarget.style.color = 'var(--accent)';
-                e.currentTarget.style.background = 'var(--accent-light)';
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-accent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border)';
-                e.currentTarget.style.color = 'var(--text-secondary)';
-                e.currentTarget.style.background = 'var(--bg-surface)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
               }}
             >
               {social.icon}
