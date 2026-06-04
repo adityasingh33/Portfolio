@@ -9,39 +9,15 @@ const Main = () => {
       <Home />
 
       {/* Subtle divider */}
-      <div
-        style={{
-          maxWidth: 120,
-          height: 2,
-          margin: '0 auto',
-          background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
-          borderRadius: 'var(--radius-full)',
-        }}
-      />
+      <div className="mx-auto h-0.5 max-w-[120px] rounded-full bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
 
       <About />
 
-      <div
-        style={{
-          maxWidth: 120,
-          height: 2,
-          margin: '0 auto',
-          background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
-          borderRadius: 'var(--radius-full)',
-        }}
-      />
+      <div className="mx-auto h-0.5 max-w-[120px] rounded-full bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
 
       <Project />
 
-      <div
-        style={{
-          maxWidth: 120,
-          height: 2,
-          margin: '0 auto',
-          background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
-          borderRadius: 'var(--radius-full)',
-        }}
-      />
+      <div className="mx-auto h-0.5 max-w-[120px] rounded-full bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent" />
 
       <Contact />
     </div>
