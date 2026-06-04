@@ -4,30 +4,19 @@ const Footer = () => {
   return (
     <footer
       id="site-footer"
+      className="border-t py-8"
       style={{
-        padding: '32px 0',
-        borderTop: '1px solid var(--border-subtle)',
+        borderColor: 'var(--border-subtle)',
         background: 'var(--bg-secondary)',
         transition: 'all var(--transition-theme)',
       }}
     >
-      <div
-        className="section-container"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 16,
-        }}
-      >
+      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4 px-6 md:px-4">
         {/* Left: Branding */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div className="flex items-center gap-3">
           <span
+            className="font-display text-[1.15rem] font-extrabold"
             style={{
-              fontFamily: "'Outfit', sans-serif",
-              fontSize: '1.15rem',
-              fontWeight: 800,
               background: 'linear-gradient(135deg, var(--accent), var(--gold))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -37,19 +26,12 @@ const Footer = () => {
             AS.
           </span>
           <span
-            style={{
-              width: 1,
-              height: 16,
-              background: 'var(--border)',
-              display: 'inline-block',
-            }}
+            className="inline-block h-4 w-px"
+            style={{ background: 'var(--border)' }}
           />
           <span
-            style={{
-              fontSize: '0.82rem',
-              color: 'var(--text-tertiary)',
-              fontWeight: 400,
-            }}
+            className="text-[0.82rem] font-normal"
+            style={{ color: 'var(--text-tertiary)' }}
           >
             Crafted with care
           </span>
@@ -57,12 +39,8 @@ const Footer = () => {
 
         {/* Center: Copyright */}
         <p
-          style={{
-            fontSize: '0.82rem',
-            color: 'var(--text-tertiary)',
-            fontWeight: 400,
-            margin: 0,
-          }}
+          className="m-0 text-[0.82rem] font-normal"
+          style={{ color: 'var(--text-tertiary)' }}
         >
           © {currentYear} Aditya Singh. All rights reserved.
         </p>
@@ -70,21 +48,8 @@ const Footer = () => {
         {/* Right: Back to top */}
         <a
           href="#home"
-          style={{
-            fontSize: '0.82rem',
-            color: 'var(--text-secondary)',
-            fontWeight: 500,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            transition: 'color var(--transition-fast)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = 'var(--accent)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = 'var(--text-secondary)';
-          }}
+          className="footer-link flex items-center gap-1.5 text-[0.82rem] font-medium"
+          style={{ color: 'var(--text-secondary)' }}
         >
           Back to top
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
