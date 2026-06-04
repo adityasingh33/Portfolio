@@ -31,18 +31,8 @@ const Home = () => {
       <div className="relative z-1 mx-auto flex w-full max-w-[1200px] flex-col-reverse items-center gap-8 px-6 text-center lg:flex-row lg:gap-[60px] lg:text-left">
         {/* Left: Text */}
         <div className="flex-1 lg:max-w-[560px]">
-          <div
-            className="animate-fade-in-up mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[0.82rem] font-semibold uppercase tracking-[0.06em]"
-            style={{
-              color: 'var(--accent)',
-              background: 'var(--accent-light)',
-            }}
-          >
-            <span className="text-[0.9rem]">👋</span> Welcome to my world
-          </div>
-
           <h1
-            className="animate-fade-in-up delay-100 mb-2 font-display font-black leading-[1.08] text-[clamp(2.4rem,6vw,4rem)]"
+            className="animate-fade-in-up mb-2 font-[Outfit] font-black leading-[1.08] text-[clamp(2.4rem,6vw,4rem)]"
             style={{ color: 'var(--text-primary)' }}
           >
             I'm{' '}
@@ -50,21 +40,21 @@ const Home = () => {
           </h1>
 
           <h2
-            className="animate-fade-in-up delay-200 mb-6 font-display text-[clamp(1.3rem,3vw,1.8rem)] font-semibold"
+            className="animate-fade-in-up delay-100 mb-6 font-[Outfit] text-[clamp(1.3rem,3vw,1.8rem)] font-semibold"
             style={{ color: 'var(--text-secondary)' }}
           >
             Developer · Creator · Problem Solver
           </h2>
 
           <p
-            className="animate-fade-in-up delay-300 mx-auto mb-9 max-w-[480px] text-[1.05rem] leading-[1.75] lg:mx-0"
+            className="animate-fade-in-up delay-200 mx-auto mb-9 max-w-[480px] text-[1.05rem] leading-[1.75] lg:mx-0"
             style={{ color: 'var(--text-secondary)' }}
           >
             Crafting elegant digital experiences with clean code and creative thinking.
             I turn ideas into polished, performant applications.
           </p>
 
-          <div className="animate-fade-in-up delay-400 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <div className="animate-fade-in-up delay-300 flex flex-wrap justify-center gap-4 lg:justify-start">
             <a href="#projects" className="accent-btn">
               View My Work
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -78,7 +68,7 @@ const Home = () => {
 
           {/* Quick stats */}
           <div
-            className="animate-fade-in-up delay-600 mt-14 flex justify-center gap-10 border-t pt-8 lg:justify-start"
+            className="animate-fade-in-up delay-500 mt-14 flex justify-center gap-10 border-t pt-8 lg:justify-start"
             style={{ borderColor: 'var(--border-subtle)' }}
           >
             {[
@@ -88,7 +78,7 @@ const Home = () => {
             ].map((stat) => (
               <div key={stat.label}>
                 <div
-                  className="font-display text-[1.6rem] font-extrabold"
+                  className="font-[Outfit] text-[1.6rem] font-extrabold"
                   style={{ color: 'var(--accent)' }}
                 >
                   {stat.value}
@@ -104,21 +94,53 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Right: Hero Image */}
-        <div className="relative flex flex-1 items-center justify-center max-w-[400px] lg:max-w-none">
-          {/* Glow ring behind image */}
+        {/* Right: Images */}
+        <div className="relative flex flex-1 flex-col items-center justify-center gap-6 max-w-[400px] lg:max-w-[520px]">
+          {/* 3D Head Image (still, no animation) */}
+          <div className="relative w-full">
+            {/* Glow ring behind image */}
+            <div
+              className="absolute inset-0 rounded-[var(--radius-xl)] blur-[40px] animate-pulse-glow"
+              style={{
+                background: 'linear-gradient(135deg, var(--accent-glow), var(--gold-light))',
+              }}
+            />
+            <img
+              src={heroImage}
+              alt="Aditya Singh — 3D Creative Workspace"
+              className="relative z-1 w-full max-w-[520px] rounded-[var(--radius-lg)]"
+              style={{ transition: 'opacity var(--transition-theme)' }}
+            />
+          </div>
+
+          {/* Personal Photo Placeholder */}
           <div
-            className="absolute h-[85%] w-[85%] rounded-[var(--radius-xl)] blur-[40px] animate-pulse-glow"
+            className="relative z-1 flex w-full max-w-[280px] flex-col items-center justify-center overflow-hidden rounded-[var(--radius-xl)] border-2 border-dashed"
             style={{
-              background: 'linear-gradient(135deg, var(--accent-glow), var(--gold-light))',
+              borderColor: 'var(--border)',
+              background: 'var(--bg-surface)',
+              aspectRatio: '3 / 4',
             }}
-          />
-          <img
-            src={heroImage}
-            alt="Aditya Singh — 3D Creative Workspace"
-            className="animate-float relative z-1 w-full max-w-[560px] rounded-[var(--radius-lg)]"
-            style={{ transition: 'opacity var(--transition-theme)' }}
-          />
+          >
+            <div
+              className="mb-3 flex size-14 items-center justify-center rounded-full text-2xl"
+              style={{ background: 'var(--accent-light)' }}
+            >
+              📷
+            </div>
+            <p
+              className="px-4 text-center font-[Outfit] text-sm font-medium"
+              style={{ color: 'var(--text-tertiary)' }}
+            >
+              Your photo here
+            </p>
+            <p
+              className="mt-1 px-4 text-center text-xs"
+              style={{ color: 'var(--text-tertiary)', opacity: 0.6 }}
+            >
+              Replace this with your personal photo
+            </p>
+          </div>
         </div>
       </div>
     </section>
