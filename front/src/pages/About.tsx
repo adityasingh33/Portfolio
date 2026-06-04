@@ -41,97 +41,60 @@ const skills: Skill[] = [
 
 const About = () => {
   return (
-    <section id="about" className="section-padding" style={{ position: 'relative' }}>
+    <section id="about" className="relative py-[100px] md:py-[60px]">
       {/* Background accent */}
       <div
+        className="pointer-events-none absolute top-1/2 left-[-10%] h-[350px] w-[350px] rounded-full opacity-40 blur-[80px]"
         style={{
-          position: 'absolute',
-          top: '50%',
-          left: '-10%',
-          width: 350,
-          height: 350,
-          borderRadius: '50%',
           background: 'radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          pointerEvents: 'none',
-          opacity: 0.4,
         }}
       />
 
-      <div className="section-container" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="relative z-1 mx-auto max-w-[1200px] px-6 md:px-4">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: 60 }}>
+        <div className="mb-[60px] text-center">
           <div className="section-label animate-fade-in-up">
             <Sparkles size={14} /> About Me
           </div>
           <h2 className="section-title animate-fade-in-up delay-100">
             A Glimpse Into <span className="accent-gradient">Who I Am</span>
           </h2>
-          <p
-            className="section-subtitle animate-fade-in-up delay-200"
-            style={{ margin: '0 auto' }}
-          >
+          <p className="section-subtitle animate-fade-in-up delay-200 mx-auto">
             Passionate about building things that live on the internet.
             I love turning complex problems into simple, elegant solutions.
           </p>
         </div>
 
         {/* Two-column: Story + Details */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 48,
-            alignItems: 'start',
-          }}
-          className="about-grid"
-        >
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 items-start">
           {/* Left: Story */}
           <div className="animate-fade-in-up delay-300">
-            <div className="card" style={{ padding: 36 }}>
+            <div className="card p-9">
               <h3
-                style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 700,
-                  marginBottom: 16,
-                  color: 'var(--text-primary)',
-                  fontFamily: "'Outfit', sans-serif",
-                }}
+                className="mb-4 font-display text-[1.25rem] font-bold"
+                style={{ color: 'var(--text-primary)' }}
               >
                 My Journey
               </h3>
               <p
-                style={{
-                  fontSize: '0.95rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.8,
-                  marginBottom: 16,
-                }}
+                className="mb-4 text-[0.95rem] leading-[1.8]"
+                style={{ color: 'var(--text-secondary)' }}
               >
                 I'm a developer who thrives on learning and exploring new technologies.
                 From building my first "Hello World" to designing complex full-stack applications,
                 every project has been a stepping stone in my journey.
               </p>
               <p
-                style={{
-                  fontSize: '0.95rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.8,
-                  marginBottom: 16,
-                }}
+                className="mb-4 text-[0.95rem] leading-[1.8]"
+                style={{ color: 'var(--text-secondary)' }}
               >
                 I believe in writing clean, maintainable code and creating user experiences
                 that feel natural and intuitive. When I'm not coding, you'll find me exploring
                 new frameworks, contributing to open-source, or brainstorming the next big idea.
               </p>
               <div
-                style={{
-                  display: 'flex',
-                  gap: 24,
-                  marginTop: 24,
-                  paddingTop: 20,
-                  borderTop: '1px solid var(--border-subtle)',
-                }}
+                className="mt-6 flex gap-6 border-t pt-5"
+                style={{ borderColor: 'var(--border-subtle)' }}
               >
                 {[
                   { Icon: GraduationCap, label: 'Student' },
@@ -140,14 +103,8 @@ const About = () => {
                 ].map((trait) => (
                   <div
                     key={trait.label}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 8,
-                      fontSize: '0.85rem',
-                      color: 'var(--text-secondary)',
-                      fontWeight: 500,
-                    }}
+                    className="flex items-center gap-2 text-[0.85rem] font-medium"
+                    style={{ color: 'var(--text-secondary)' }}
                   >
                     <trait.Icon size={18} style={{ color: 'var(--accent)' }} />
                     {trait.label}
@@ -160,57 +117,23 @@ const About = () => {
           {/* Right: Skills */}
           <div className="animate-fade-in-up delay-400">
             <h3
-              style={{
-                fontSize: '1.1rem',
-                fontWeight: 700,
-                marginBottom: 20,
-                color: 'var(--text-primary)',
-                fontFamily: "'Outfit', sans-serif",
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-              }}
+              className="mb-5 flex items-center gap-2 font-display text-[1.1rem] font-bold"
+              style={{ color: 'var(--text-primary)' }}
             >
               <Sparkles size={16} style={{ color: 'var(--accent)' }} /> Tech Stack & Skills
             </h3>
 
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: 12,
-              }}
-              className="skills-grid"
-            >
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
               {skills.map((skill, i) => {
                 const IconComp = skill.icon;
                 return (
                   <div
                     key={skill.name}
-                    className={`animate-fade-in-up delay-${Math.min((i + 3) * 100, 800)}`}
+                    className={`skill-item animate-fade-in-up delay-${Math.min((i + 3) * 100, 800)} flex cursor-default items-center gap-2.5 rounded-[var(--radius-md)] px-4 py-3.5 text-[0.85rem] font-medium`}
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 10,
-                      padding: '14px 16px',
                       background: 'var(--bg-surface)',
                       border: '1px solid var(--border-subtle)',
-                      borderRadius: 'var(--radius-md)',
-                      fontSize: '0.85rem',
-                      fontWeight: 500,
                       color: 'var(--text-primary)',
-                      cursor: 'default',
-                      transition: 'all var(--transition-base)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--accent)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = 'none';
                     }}
                   >
                     <IconComp size={18} style={{ color: skill.color, flexShrink: 0 }} />
@@ -222,21 +145,15 @@ const About = () => {
 
             {/* Additional info */}
             <div
+              className="mt-6 rounded-[var(--radius-md)] border-l-[3px] px-6 py-5"
               style={{
-                marginTop: 24,
-                padding: '20px 24px',
                 background: 'var(--accent-light)',
-                borderRadius: 'var(--radius-md)',
-                borderLeft: '3px solid var(--accent)',
+                borderLeftColor: 'var(--accent)',
               }}
             >
               <p
-                style={{
-                  fontSize: '0.88rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.6,
-                  fontStyle: 'italic',
-                }}
+                className="text-[0.88rem] italic leading-[1.6]"
+                style={{ color: 'var(--text-secondary)' }}
               >
                 "Constantly learning and adapting — currently exploring AI/ML integrations
                 and cloud-native architectures."
@@ -245,19 +162,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      {/* Responsive */}
-      <style>{`
-        @media (max-width: 768px) {
-          .about-grid {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-          }
-          .skills-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };
