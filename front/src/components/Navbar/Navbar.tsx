@@ -57,83 +57,44 @@ const Navbar = () => {
   return (
     <nav
       id="main-nav"
+      className={`fixed top-0 left-0 right-0 z-100 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        scrolled
+          ? 'py-3 border-b border-[var(--bg-glass-border)] backdrop-blur-[20px]'
+          : 'py-5 border-b border-transparent'
+      }`}
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        padding: scrolled ? '12px 0' : '20px 0',
         background: scrolled ? 'var(--bg-glass)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--bg-glass-border)' : '1px solid transparent',
-        transition: 'all var(--transition-base)',
       }}
     >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 24px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between px-6">
         {/* Logo */}
         <a
           href="#home"
+          className="font-display text-2xl font-extrabold tracking-tight transition-opacity duration-150"
           style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: '1.5rem',
-            fontWeight: 800,
-            letterSpacing: '-0.03em',
             background: 'linear-gradient(135deg, var(--accent), var(--gold))',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            transition: 'opacity var(--transition-fast)',
           }}
         >
           AS.
         </a>
 
         {/* Desktop Nav Links */}
-        <ul
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            listStyle: 'none',
-            margin: 0,
-            padding: 0,
-          }}
-          className="nav-desktop"
-        >
+        <ul className="hidden md:flex items-center gap-2 list-none m-0 p-0">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
               <li key={link.href}>
                 <a
                   href={link.href}
+                  className="nav-link block rounded-full px-[18px] py-2 text-[0.88rem]"
                   style={{
-                    padding: '8px 18px',
-                    fontSize: '0.88rem',
                     fontWeight: isActive ? 600 : 500,
                     color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
                     background: isActive ? 'var(--accent-light)' : 'transparent',
-                    borderRadius: 'var(--radius-full)',
-                    transition: 'all var(--transition-fast)',
-                    display: 'block',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = 'var(--accent)';
-                    e.currentTarget.style.background = 'var(--accent-light)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = isActive ? 'var(--accent)' : 'var(--text-secondary)';
-                    e.currentTarget.style.background = isActive ? 'var(--accent-light)' : 'transparent';
                   }}
                 >
                   {link.label}
@@ -144,36 +105,17 @@ const Navbar = () => {
         </ul>
 
         {/* Right: Theme toggle + Mobile menu */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div className="flex items-center gap-2">
           {/* Theme Toggle */}
           <button
             id="theme-toggle"
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            className="theme-toggle flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full text-lg"
             style={{
-              width: 42,
-              height: 42,
-              borderRadius: 'var(--radius-full)',
               border: '1px solid var(--border)',
               background: 'var(--bg-surface)',
               color: 'var(--text-primary)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.15rem',
-              transition: 'all var(--transition-base)',
-              flexShrink: 0,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--accent)';
-              e.currentTarget.style.color = 'var(--accent)';
-              e.currentTarget.style.transform = 'rotate(30deg)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--border)';
-              e.currentTarget.style.color = 'var(--text-primary)';
-              e.currentTarget.style.transform = 'rotate(0deg)';
             }}
           >
             {theme === 'light' ? '🌙' : '☀️'}
@@ -184,24 +126,18 @@ const Navbar = () => {
             id="mobile-menu-toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle mobile menu"
-            className="nav-mobile-btn"
+            className={`nav-mobile-btn flex md:hidden size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full p-0 relative${mobileOpen ? ' nav-mobile-btn--open' : ''}`}
             style={{
-              width: 42,
-              height: 42,
-              borderRadius: 'var(--radius-full)',
               border: '1px solid var(--border)',
               background: 'var(--bg-surface)',
               color: 'var(--text-primary)',
-              cursor: 'pointer',
-              display: 'none',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.2rem',
-              transition: 'all var(--transition-base)',
-              flexShrink: 0,
             }}
           >
-            {mobileOpen ? '✕' : '☰'}
+            <span className="hamburger-box">
+              <span className="hamburger-bar" />
+              <span className="hamburger-bar" />
+              <span className="hamburger-bar" />
+            </span>
           </button>
         </div>
       </div>
@@ -209,18 +145,10 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div
-          className="nav-mobile-menu"
+          className="absolute top-full left-0 right-0 border-b border-[var(--bg-glass-border)] px-6 py-4 backdrop-blur-[20px] animate-fade-in-up"
           style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            right: 0,
             background: 'var(--bg-glass)',
-            backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
-            borderBottom: '1px solid var(--bg-glass-border)',
-            padding: '16px 24px',
-            animation: 'fadeInUp 0.3s ease-out',
           }}
         >
           {navLinks.map((link) => {
@@ -230,23 +158,11 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 onClick={handleNavClick}
+                className="nav-link block rounded-[var(--radius-md)] px-[18px] py-3.5 text-base"
                 style={{
-                  display: 'block',
-                  padding: '14px 18px',
-                  fontSize: '1rem',
                   fontWeight: isActive ? 600 : 500,
                   color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
                   background: isActive ? 'var(--accent-light)' : 'transparent',
-                  borderRadius: 'var(--radius-md)',
-                  transition: 'all var(--transition-fast)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--accent)';
-                  e.currentTarget.style.background = 'var(--accent-light)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = isActive ? 'var(--accent)' : 'var(--text-secondary)';
-                  e.currentTarget.style.background = isActive ? 'var(--accent-light)' : 'transparent';
                 }}
               >
                 {link.label}
@@ -255,14 +171,6 @@ const Navbar = () => {
           })}
         </div>
       )}
-
-      {/* Responsive styles */}
-      <style>{`
-        @media (max-width: 768px) {
-          .nav-desktop { display: none !important; }
-          .nav-mobile-btn { display: flex !important; }
-        }
-      `}</style>
     </nav>
   );
 };
