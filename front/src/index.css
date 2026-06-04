@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* ─── Tailwind v4 Theme Tokens ─── */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', sans-serif;
+
+  /* Animations */
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-fade-in-up: fadeInUp 0.7s ease-out both;
+  --animate-fade-in: fadeIn 0.6s ease-out both;
+  --animate-slide-left: slideInLeft 0.7s ease-out both;
+  --animate-slide-right: slideInRight 0.7s ease-out both;
+  --animate-pulse-glow: pulseGlow 6s ease-in-out infinite;
+}
+
 /* ─── Theme Variables ─── */
 :root {
   /* Light Mode (matches Head-Light.png warm cream) */
@@ -87,7 +101,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color var(--transition-theme), color var(--transition-theme);
@@ -98,7 +112,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -187,26 +201,6 @@ img {
   100% { background-position: 200% center; }
 }
 
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.7s ease-out both;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out both;
-}
-
-.animate-slide-left {
-  animation: slideInLeft 0.7s ease-out both;
-}
-
-.animate-slide-right {
-  animation: slideInRight 0.7s ease-out both;
-}
-
 /* Staggered delays */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
@@ -217,24 +211,7 @@ img {
 .delay-700 { animation-delay: 700ms; }
 .delay-800 { animation-delay: 800ms; }
 
-/* ─── Utility Classes ─── */
-.glass {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--bg-glass-border);
-}
-
-.section-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.section-padding {
-  padding: 100px 0;
-}
-
+/* ─── Component Classes ─── */
 .accent-gradient {
   background: linear-gradient(135deg, var(--accent), var(--gold));
   -webkit-background-clip: text;
@@ -243,18 +220,13 @@ img {
 }
 
 .accent-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  @apply inline-flex items-center gap-2 font-semibold border-none cursor-pointer;
   padding: 14px 32px;
   background: var(--accent);
   color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
-  border: none;
   border-radius: var(--radius-full);
-  cursor: pointer;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-accent);
   letter-spacing: 0.01em;
@@ -271,18 +243,14 @@ img {
 }
 
 .outline-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  @apply inline-flex items-center gap-2 font-semibold cursor-pointer;
   padding: 13px 32px;
   background: transparent;
   color: var(--accent);
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   border: 2px solid var(--accent);
   border-radius: var(--radius-full);
-  cursor: pointer;
   transition: all var(--transition-base);
 }
 
@@ -293,14 +261,10 @@ img {
 }
 
 .section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  @apply inline-flex items-center gap-2 font-semibold uppercase;
   padding: 6px 16px;
   font-size: 0.8rem;
-  font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--accent);
   background: var(--accent-light);
   border-radius: var(--radius-full);
@@ -355,9 +319,7 @@ img {
 
 /* ─── Tag / Pill ─── */
 .pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  @apply inline-flex items-center gap-1;
   padding: 4px 12px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -372,13 +334,103 @@ img {
   color: var(--gold);
 }
 
-/* ─── Responsive ─── */
-@media (max-width: 768px) {
-  .section-padding {
-    padding: 60px 0;
-  }
+/* ─── Hamburger Animation ─── */
+.hamburger-box {
+  @apply relative flex flex-col justify-between pointer-events-none;
+  width: 18px;
+  height: 14px;
+}
 
-  .section-container {
-    padding: 0 16px;
-  }
+.hamburger-bar {
+  @apply block w-full;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
+  transform-origin: center center;
+}
+
+.nav-mobile-btn--open .hamburger-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-mobile-btn--open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-mobile-btn--open .hamburger-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.nav-mobile-btn:hover .hamburger-bar {
+  background: var(--accent);
+}
+
+/* ─── Nav link hover utility ─── */
+.nav-link {
+  transition: all var(--transition-fast);
+}
+.nav-link:hover {
+  color: var(--accent) !important;
+  background: var(--accent-light) !important;
+}
+
+/* ─── Icon button hover ─── */
+.icon-btn {
+  transition: all var(--transition-base);
+}
+.icon-btn:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background: var(--accent-light) !important;
+}
+
+/* ─── Skill item hover ─── */
+.skill-item {
+  transition: all var(--transition-base);
+}
+.skill-item:hover {
+  border-color: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── Achievement card hover ─── */
+.achievement-card {
+  transition: all var(--transition-base);
+}
+.achievement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold) !important;
+}
+
+/* ─── Social link hover ─── */
+.social-link {
+  transition: all var(--transition-base);
+}
+.social-link:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background: var(--accent-light) !important;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-accent);
+}
+
+/* ─── Theme toggle hover ─── */
+.theme-toggle {
+  transition: all var(--transition-base);
+}
+.theme-toggle:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  transform: rotate(30deg);
+}
+
+/* ─── Footer link hover ─── */
+.footer-link {
+  transition: color var(--transition-fast);
+}
+.footer-link:hover {
+  color: var(--accent) !important;
 }
