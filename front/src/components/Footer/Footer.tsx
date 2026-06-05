@@ -4,19 +4,32 @@ const Footer = () => {
   return (
     <footer
       id="site-footer"
-      className="border-t py-8"
       style={{
-        borderColor: 'var(--border-subtle)',
+        borderTop: '1px solid var(--border-subtle)',
+        padding: '32px 0',
         background: 'var(--bg-secondary)',
         transition: 'all var(--transition-theme)',
       }}
     >
-      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-4 px-6 md:px-4">
+      <div
+        style={{
+          margin: '0 auto',
+          display: 'flex',
+          maxWidth: '1200px',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '16px',
+          padding: '0 24px',
+        }}
+      >
         {/* Left: Branding */}
-        <div className="flex items-center gap-3">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span
-            className="font-display text-[1.15rem] font-extrabold"
             style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.15rem',
+              fontWeight: 800,
               background: 'linear-gradient(135deg, var(--accent), var(--gold))',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -26,12 +39,19 @@ const Footer = () => {
             AS.
           </span>
           <span
-            className="inline-block h-4 w-px"
-            style={{ background: 'var(--border)' }}
+            style={{
+              display: 'inline-block',
+              height: '16px',
+              width: '1px',
+              background: 'var(--border)',
+            }}
           />
           <span
-            className="text-[0.82rem] font-normal"
-            style={{ color: 'var(--text-tertiary)' }}
+            style={{
+              fontSize: '0.82rem',
+              fontWeight: 400,
+              color: 'var(--text-tertiary)',
+            }}
           >
             Crafted with care
           </span>
@@ -39,8 +59,12 @@ const Footer = () => {
 
         {/* Center: Copyright */}
         <p
-          className="m-0 text-[0.82rem] font-normal"
-          style={{ color: 'var(--text-tertiary)' }}
+          style={{
+            margin: 0,
+            fontSize: '0.82rem',
+            fontWeight: 400,
+            color: 'var(--text-tertiary)',
+          }}
         >
           © {currentYear} Aditya Singh. All rights reserved.
         </p>
@@ -48,8 +72,15 @@ const Footer = () => {
         {/* Right: Back to top */}
         <a
           href="#home"
-          className="footer-link flex items-center gap-1.5 text-[0.82rem] font-medium"
-          style={{ color: 'var(--text-secondary)' }}
+          className="footer-link"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            fontSize: '0.82rem',
+            fontWeight: 500,
+            color: 'var(--text-secondary)',
+          }}
         >
           Back to top
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

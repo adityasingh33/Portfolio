@@ -6,9 +6,9 @@ import Main from './pages/Main'
 const App = () => {
   return (
     <ThemeProvider>
-      <div className="flex flex-col min-h-screen">
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
-        <main className="flex-1">
+        <main style={{ flex: 1 }}>
           <Main />
         </main>
         <Footer />

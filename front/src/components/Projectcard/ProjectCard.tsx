@@ -6,27 +6,54 @@ interface ProjectCardProps {
   index: number;
 }
 
-const ProjectCard = ({ project, index }: ProjectCardProps) => {
+const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div
-      className={`card animate-fade-in-up delay-${Math.min((index + 2) * 100, 800)} flex h-full flex-col overflow-hidden p-0`}
+      className="card"
+      style={{
+        display: 'flex',
+        height: '100%',
+        flexDirection: 'column',
+        overflow: 'hidden',
+        padding: 0,
+      }}
     >
       {/* Top accent stripe */}
       <div
-        className="h-1"
         style={{
+          height: '4px',
           background: project.featured
             ? 'linear-gradient(90deg, var(--accent), var(--gold))'
             : 'linear-gradient(90deg, var(--accent), var(--accent-hover))',
         }}
       />
 
-      <div className="flex flex-1 flex-col px-7 pt-7 pb-6">
+      <div
+        style={{
+          display: 'flex',
+          flex: 1,
+          flexDirection: 'column',
+          padding: '28px 28px 24px',
+        }}
+      >
         {/* Header row */}
-        <div className="mb-4 flex items-start justify-between">
+        <div
+          style={{
+            marginBottom: '16px',
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+          }}
+        >
           <div
-            className="flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-md)]"
             style={{
+              display: 'flex',
+              width: '44px',
+              height: '44px',
+              flexShrink: 0,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 'var(--radius-md)',
               background: 'var(--accent-light)',
               color: 'var(--accent)',
             }}
@@ -34,15 +61,21 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             <FolderOpen size={22} />
           </div>
 
-          <div className="flex gap-2">
+          <div style={{ display: 'flex', gap: '8px' }}>
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.title} on GitHub`}
-                className="icon-btn flex size-9 items-center justify-center rounded-full"
+                className="icon-btn"
                 style={{
+                  display: 'flex',
+                  width: '36px',
+                  height: '36px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
                   border: '1px solid var(--border)',
                   color: 'var(--text-secondary)',
                 }}
@@ -56,8 +89,14 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.title} live`}
-                className="icon-btn flex size-9 items-center justify-center rounded-full"
+                className="icon-btn"
                 style={{
+                  display: 'flex',
+                  width: '36px',
+                  height: '36px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
                   border: '1px solid var(--border)',
                   color: 'var(--text-secondary)',
                 }}
@@ -70,27 +109,50 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
         {/* Title */}
         <h3
-          className="mb-2.5 font-display text-[1.15rem] font-bold leading-[1.3]"
-          style={{ color: 'var(--text-primary)' }}
+          style={{
+            marginBottom: '10px',
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.15rem',
+            fontWeight: 700,
+            lineHeight: 1.3,
+            color: 'var(--text-primary)',
+          }}
         >
           {project.title}
           {project.featured && (
-            <span className="pill-gold ml-2.5 align-middle text-[0.65rem]">
-              <Star size={10} className="mr-0.5" /> Featured
+            <span
+              className="pill-gold"
+              style={{
+                marginLeft: '10px',
+                verticalAlign: 'middle',
+                fontSize: '0.65rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '3px',
+                padding: '3px 10px',
+                borderRadius: 'var(--radius-full)',
+              }}
+            >
+              <Star size={10} /> Featured
             </span>
           )}
         </h3>
 
         {/* Description */}
         <p
-          className="mb-5 flex-1 text-[0.88rem] leading-[1.7]"
-          style={{ color: 'var(--text-secondary)' }}
+          style={{
+            marginBottom: '20px',
+            flex: 1,
+            fontSize: '0.88rem',
+            lineHeight: 1.7,
+            color: 'var(--text-secondary)',
+          }}
         >
           {project.description}
         </p>
 
         {/* Tech stack tags */}
-        <div className="flex flex-wrap gap-1.5">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
           {project.techStack.map((tech) => (
             <span key={tech} className="pill">
               {tech}
