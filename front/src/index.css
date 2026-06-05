@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../";
 
 /* ─── Tailwind v4 Theme Tokens ─── */
 @theme {
@@ -149,6 +150,26 @@ img {
 }
 
 /* ─── Animations ─── */
+@keyframes extendLine {
+  from {
+    transform: translateX(-50%) scaleY(0);
+  }
+  to {
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+@keyframes lineGlow {
+  0% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 1px var(--accent));
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 4px var(--accent));
+  }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-14px); }
@@ -434,4 +455,61 @@ img {
 }
 .footer-link:hover {
   color: var(--accent) !important;
+}
+
+/* ─── Responsive Layout ─── */
+
+/* Mobile: stack hero, show hamburger, hide desktop nav */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column-reverse !important;
+    text-align: center !important;
+    gap: 32px !important;
+    padding: 0 20px !important;
+  }
+
+  .hero-content > div:first-child {
+    max-width: 100% !important;
+  }
+
+  .hero-image-wrapper {
+    max-width: 320px !important;
+    margin-top: 40px;
+  }
+
+  .nav-desktop-links {
+    display: none !important;
+  }
+
+  #mobile-menu-toggle {
+    display: flex !important;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .hero-image-wrapper {
+    max-width: 420px !important;
+  }
 }
