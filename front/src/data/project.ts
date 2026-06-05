@@ -15,7 +15,7 @@ export const projects: Project[] = [
     description:
       'A real-time AI-powered chat platform with natural language processing, context-aware responses, and a sleek conversational interface.',
     techStack: ['React', 'Node.js', 'OpenAI API', 'Socket.io', 'MongoDB'],
-    githubUrl: 'https://github.com/adityasingh',
+    githubUrl: 'https://github.com/adityasingh33',
     liveUrl: '#',
     featured: true,
   },
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     description:
       'A comprehensive analytics dashboard for e-commerce businesses featuring real-time sales tracking, inventory management, and data visualizations.',
     techStack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Chart.js', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/adityasingh',
+    githubUrl: 'https://github.com/adityasingh33',
     featured: true,
   },
   {
@@ -34,7 +34,7 @@ export const projects: Project[] = [
     description:
       'A modern, responsive portfolio website with dark/light theme, smooth animations, and an elegant design system.',
     techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/adityasingh',
+    githubUrl: 'https://github.com/adityasingh33',
     liveUrl: '#',
   },
   {
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     description:
       'A collaborative project management tool with kanban boards, team workspaces, real-time updates, and deadline tracking.',
     techStack: ['React', 'Express', 'MongoDB', 'Redux', 'JWT'],
-    githubUrl: 'https://github.com/adityasingh',
+    githubUrl: 'https://github.com/adityasingh33',
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     description:
       'An elegant weather application with animated visualizations, location-based forecasts, and severe weather alerts.',
     techStack: ['React', 'TypeScript', 'Weather API', 'Framer Motion'],
-    githubUrl: 'https://github.com/adityasingh',
+    githubUrl: 'https://github.com/adityasingh33',
     liveUrl: '#',
   },
   {
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     description:
       'A RESTful API backend for a social media platform with authentication, media uploads, real-time notifications, and feed algorithms.',
     techStack: ['Node.js', 'Express', 'PostgreSQL', 'Redis', 'Docker'],
-    githubUrl: 'https://github.com/adityasingh',
+    githubUrl: 'https://github.com/adityasingh33',
   },
 ];
 
@@ -69,24 +69,24 @@ export const achievements = [
     id: 1,
     title: 'Dean\'s List',
     description: 'Consistently recognized for academic excellence.',
-    icon: '🏆',
+    icon: 'trophy',
   },
   {
     id: 2,
     title: 'Hackathon Winner',
     description: 'First place in university-level coding competition.',
-    icon: '🥇',
+    icon: 'medal',
   },
   {
     id: 3,
     title: 'Open Source Contributor',
     description: 'Active contributor to multiple open-source projects.',
-    icon: '💻',
+    icon: 'gitPullRequest',
   },
   {
     id: 4,
     title: 'Published Research',
     description: 'Co-authored a research paper on machine learning.',
-    icon: '📄',
+    icon: 'fileText',
   },
 ];
