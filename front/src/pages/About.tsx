@@ -116,7 +116,7 @@ const About = () => {
                   color: 'var(--text-primary)',
                 }}
               >
-                My Journey
+                Wanna know about me ?
               </h3>
               <p
                 style={{
@@ -126,9 +126,10 @@ const About = () => {
                   color: 'var(--text-secondary)',
                 }}
               >
-                I'm a developer who thrives on learning and exploring new technologies.
-                From building my first "Hello World" to designing complex full-stack applications,
-                every project has been a stepping stone in my journey.
+                Hi, I'm Aditya Singh. I'm a Competitive Programmer and Software Developer
+                passionate about building scalable, efficient, and impactful solutions. My journey
+                started with problem-solving and algorithms, which developed a strong foundation
+                in Data Structures, C++, and System Design.
               </p>
               <p
                 style={{
@@ -138,9 +139,23 @@ const About = () => {
                   color: 'var(--text-secondary)',
                 }}
               >
-                I believe in writing clean, maintainable code and creating user experiences
-                that feel natural and intuitive. When I'm not coding, you'll find me exploring
-                new frameworks, contributing to open-source, or brainstorming the next big idea.
+                Currently, I'm exploring the intersection of Web Development, Blockchain, and
+                Distributed Systems while continuously sharpening my problem-solving skills through
+                competitive programming. I enjoy turning complex ideas into practical applications
+                and am always eager to learn new technologies, optimize systems, and build products
+                that create real value.
+              </p>
+              <p
+                style={{
+                  marginBottom: '16px',
+                  fontSize: '0.95rem',
+                  lineHeight: 1.8,
+                  color: 'var(--text-secondary)',
+                }}
+              >
+                Whether it's designing robust architectures, developing modern web applications,
+                or understanding the fundamentals of decentralized technologies, I strive to grow
+                as an engineer who can solve challenging problems at scale.
               </p>
               <div
                 style={{
@@ -245,8 +260,7 @@ const About = () => {
                   color: 'var(--text-secondary)',
                 }}
               >
-                "Constantly learning and adapting — currently exploring AI/ML integrations
-                and cloud-native architectures."
+                "Constantly learning and adapting — currently exploring System Design and CS fundamentals ."   
               </p>
             </div>
           </div>
