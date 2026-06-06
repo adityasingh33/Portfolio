@@ -9,16 +9,7 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  {
-    id: 1,
-    title: 'AI Chat Application',
-    description:
-      'A real-time AI-powered chat platform with natural language processing, context-aware responses, and a sleek conversational interface.',
-    techStack: ['React', 'Node.js', 'OpenAI API', 'Socket.io', 'MongoDB'],
-    githubUrl: 'https://github.com/adityasingh33',
-    liveUrl: '#',
-    featured: true,
-  },
+  
   {
     id: 2,
     title: 'E-Commerce Dashboard',
@@ -37,31 +28,9 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/adityasingh33',
     liveUrl: '#',
   },
-  {
-    id: 4,
-    title: 'Task Management System',
-    description:
-      'A collaborative project management tool with kanban boards, team workspaces, real-time updates, and deadline tracking.',
-    techStack: ['React', 'Express', 'MongoDB', 'Redux', 'JWT'],
-    githubUrl: 'https://github.com/adityasingh33',
-  },
-  {
-    id: 5,
-    title: 'Weather Forecast App',
-    description:
-      'An elegant weather application with animated visualizations, location-based forecasts, and severe weather alerts.',
-    techStack: ['React', 'TypeScript', 'Weather API', 'Framer Motion'],
-    githubUrl: 'https://github.com/adityasingh33',
-    liveUrl: '#',
-  },
-  {
-    id: 6,
-    title: 'Social Media API',
-    description:
-      'A RESTful API backend for a social media platform with authentication, media uploads, real-time notifications, and feed algorithms.',
-    techStack: ['Node.js', 'Express', 'PostgreSQL', 'Redis', 'Docker'],
-    githubUrl: 'https://github.com/adityasingh33',
-  },
+  
+ 
+  
 ];
 
 export const achievements = [
@@ -73,8 +42,8 @@ export const achievements = [
   },
   {
     id: 2,
-    title: 'Hackathon Winner',
-    description: 'First place in university-level coding competition.',
+    title: 'Competitve Programming',
+    description: 'Ranked at 52 among 20k + participants in code chef starter 234D.',
     icon: 'medal',
   },
   {
@@ -83,10 +52,5 @@ export const achievements = [
     description: 'Active contributor to multiple open-source projects.',
     icon: 'gitPullRequest',
   },
-  {
-    id: 4,
-    title: 'Published Research',
-    description: 'Co-authored a research paper on machine learning.',
-    icon: 'fileText',
-  },
+  
 ];

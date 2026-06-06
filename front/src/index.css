@@ -494,21 +494,10 @@ img {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .achievements-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
 }
 
 /* Tablet adjustments */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
   .hero-image-wrapper {
     max-width: 420px !important;
   }
