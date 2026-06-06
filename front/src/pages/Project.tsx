@@ -12,17 +12,15 @@ const achievementIconMap: Record<string, LucideIcon> = {
 
 const Project = () => {
   return (
-    <section id="projects" style={{ position: 'relative', padding: '100px 0' }}>
+    <section id="projects" className="relative" style={{ padding: '100px 0' }}>
       {/* Background accent */}
       <div
+        className="pointer-events-none absolute rounded-full"
         style={{
-          pointerEvents: 'none',
-          position: 'absolute',
           top: '20%',
           right: '-8%',
           height: '400px',
           width: '400px',
-          borderRadius: '50%',
           opacity: 0.5,
           filter: 'blur(80px)',
           background: 'radial-gradient(circle, var(--gold-light) 0%, transparent 70%)',
@@ -33,8 +31,8 @@ const Project = () => {
         style={{
           position: 'relative',
           zIndex: 1,
-          margin: '0 auto',
           maxWidth: '1200px',
+          margin: '0 auto',
           padding: '0 24px',
         }}
       >
@@ -55,19 +53,26 @@ const Project = () => {
           </p>
         </div>
 
-        {/* Project Grid */}
+        {/* Project Cards — centered */}
         <div
           style={{
-            marginBottom: '80px',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '24px',
+            maxWidth: '820px',
+            margin: '0 auto 96px auto',
           }}
-          className="projects-grid"
         >
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
+          <div
+            className="flex flex-wrap justify-center"
+            style={{ gap: '24px' }}
+          >
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                style={{ flex: '1 1 340px', maxWidth: '390px' }}
+              >
+                <ProjectCard project={project} index={index} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Achievements */}
@@ -86,62 +91,54 @@ const Project = () => {
             </h3>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '20px',
-            }}
-            className="achievements-grid"
-          >
-            {achievements.map((achievement) => {
-              const IconComp = achievementIconMap[achievement.icon];
-              return (
-                <div
-                  key={achievement.id}
-                  className="achievement-card"
-                  style={{
-                    cursor: 'default',
-                    borderRadius: 'var(--radius-lg)',
-                    textAlign: 'center',
-                    padding: '32px 20px',
-                    background: 'var(--bg-surface)',
-                    border: '1px solid var(--border-subtle)',
-                  }}
-                >
+          {/* Achievement Cards — centered */}
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <div
+              className="achievements-grid flex flex-wrap justify-center"
+              style={{ gap: '20px' }}
+            >
+              {achievements.map((achievement) => {
+                const IconComp = achievementIconMap[achievement.icon];
+                return (
                   <div
+                    key={achievement.id}
+                    className="achievement-card cursor-default text-center"
                     style={{
-                      marginBottom: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      flex: '1 1 240px',
+                      maxWidth: '280px',
+                      borderRadius: 'var(--radius-lg)',
+                      padding: '32px 20px',
+                      background: 'var(--bg-surface)',
+                      border: '1px solid var(--border-subtle)',
                     }}
                   >
-                    {IconComp && <IconComp size={32} style={{ color: 'var(--gold)' }} />}
+                    <div className="flex items-center justify-center" style={{ marginBottom: '12px' }}>
+                      {IconComp && <IconComp size={32} style={{ color: 'var(--gold)' }} />}
+                    </div>
+                    <h4
+                      style={{
+                        marginBottom: '6px',
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '0.95rem',
+                        fontWeight: 700,
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      {achievement.title}
+                    </h4>
+                    <p
+                      style={{
+                        fontSize: '0.82rem',
+                        lineHeight: 1.5,
+                        color: 'var(--text-secondary)',
+                      }}
+                    >
+                      {achievement.description}
+                    </p>
                   </div>
-                  <h4
-                    style={{
-                      marginBottom: '6px',
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '0.95rem',
-                      fontWeight: 700,
-                      color: 'var(--text-primary)',
-                    }}
-                  >
-                    {achievement.title}
-                  </h4>
-                  <p
-                    style={{
-                      fontSize: '0.82rem',
-                      lineHeight: 1.5,
-                      color: 'var(--text-secondary)',
-                    }}
-                  >
-                    {achievement.description}
-                  </p>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
