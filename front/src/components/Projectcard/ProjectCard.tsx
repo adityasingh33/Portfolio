@@ -7,8 +7,19 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const handleMouseEnter = () => {
+    const audio = new Audio('/janet.mp3');
+    audio.volume = 0.4;
+    audio.play().catch((err) => {
+      console.debug('Playback blocked:', err);
+    });
+  };
+
   return (
-    <div className="card flex h-full flex-col overflow-hidden p-0">
+    <div
+      className="card flex h-full flex-col overflow-hidden p-0"
+      onMouseEnter={handleMouseEnter}
+    >
       {/* Top accent stripe */}
       <div
         className="h-1"

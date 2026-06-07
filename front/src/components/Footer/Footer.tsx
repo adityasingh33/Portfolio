@@ -53,7 +53,7 @@ const Footer = () => {
               color: 'var(--text-tertiary)',
             }}
           >
-            Crafted with care
+            Portfolio ended.Innovation didn't.
           </span>
         </div>
 
