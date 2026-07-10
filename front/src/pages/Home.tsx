@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import headDark from '../assets/Head-Dark.png';
 import headLight from '../assets/Head-Light.png';
+import adityaDP from '../assets/Aditya_DP.png';
 
 const Home = () => {
   const { theme } = useTheme();
@@ -239,25 +240,20 @@ const Home = () => {
               />
             </div>
 
-            {/* Personal Photo Placeholder */}
+            {/* Personal Photo */}
             <div
               style={{
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
                 zIndex: 10,
-                display: 'flex',
                 width: '70%',
                 aspectRatio: '3/4',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
                 overflow: 'hidden',
                 borderRadius: 'var(--radius-xl)',
                 borderWidth: '8px',
                 borderStyle: 'solid',
                 borderColor: 'var(--bg-primary)',
-                background: 'var(--bg-surface)',
                 boxShadow: 'var(--shadow-xl)',
                 opacity: activeMedia === 'photo' ? 1 : 0,
                 transform: `translate(-50%, -50%) ${activeMedia === 'photo' ? 'scale(1)' : 'scale(0.95)'}`,
@@ -265,45 +261,16 @@ const Home = () => {
                 pointerEvents: activeMedia === 'photo' ? 'auto' : 'none',
               }}
             >
-              <div
+              <img
+                src={adityaDP}
+                alt="Aditya Singh"
                 style={{
-                  marginBottom: '8px',
-                  display: 'flex',
-                  width: '40px',
-                  height: '40px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '50%',
-                  fontSize: '1.125rem',
-                  background: 'var(--accent-light)',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
                 }}
-              >
-                📷
-              </div>
-              <p
-                style={{
-                  padding: '0 8px',
-                  textAlign: 'center',
-                  fontFamily: 'Outfit, sans-serif',
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
-                  color: 'var(--text-primary)',
-                }}
-              >
-                Your photo
-              </p>
-              <p
-                style={{
-                  marginTop: '4px',
-                  padding: '0 8px',
-                  textAlign: 'center',
-                  fontSize: '10px',
-                  lineHeight: 1.6,
-                  color: 'var(--text-tertiary)',
-                }}
-              >
-                Replace this placeholder
-              </p>
+              />
             </div>
           </div>
 
