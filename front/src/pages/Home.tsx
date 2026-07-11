@@ -255,7 +255,7 @@ const Home = () => {
                 borderStyle: 'solid',
                 borderColor: 'var(--bg-primary)',
                 boxShadow: 'var(--shadow-xl)',
-                background: 'var(--bg-primary)',
+                background: 'linear-gradient(135deg, #ff8c00, #ff6a00)',
                 opacity: activeMedia === 'photo' ? 1 : 0,
                 transform: `translate(-50%, -50%) ${activeMedia === 'photo' ? 'scale(1)' : 'scale(0.95)'}`,
                 transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
