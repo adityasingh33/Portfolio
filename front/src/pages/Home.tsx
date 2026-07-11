@@ -251,11 +251,8 @@ const Home = () => {
                 aspectRatio: '3/4',
                 overflow: 'hidden',
                 borderRadius: 'var(--radius-xl)',
-                borderWidth: '8px',
-                borderStyle: 'solid',
-                borderColor: 'var(--bg-primary)',
                 boxShadow: 'var(--shadow-xl)',
-                background: 'linear-gradient(135deg, #ff8c00, #ff6a00)',
+                background: 'var(--bg-primary)',
                 opacity: activeMedia === 'photo' ? 1 : 0,
                 transform: `translate(-50%, -50%) ${activeMedia === 'photo' ? 'scale(1)' : 'scale(0.95)'}`,
                 transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -268,8 +265,14 @@ const Home = () => {
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover',
+                  objectFit: 'contain',
                   display: 'block',
+                  ...(theme === 'light'
+                    ? { mixBlendMode: 'multiply' as const }
+                    : {
+                        WebkitMaskImage: 'radial-gradient(ellipse 85% 80% at 50% 45%, black 50%, transparent 100%)',
+                        maskImage: 'radial-gradient(ellipse 85% 80% at 50% 45%, black 50%, transparent 100%)',
+                      }),
                 }}
               />
             </div>

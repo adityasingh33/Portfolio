@@ -43,7 +43,7 @@ export const achievements = [
   {
     id: 2,
     title: 'Competitve Programming',
-    description: 'Ranked at 52 among 20k + participants in code chef starter 234D.',
+    description: 'Ranked at 528 among 20k + participants in code chef starter 234D.',
     icon: 'medal',
   },
   {
